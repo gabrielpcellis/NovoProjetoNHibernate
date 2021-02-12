@@ -1,0 +1,2 @@
+# NovoProjetoNHibernate
+Para fins acadêmicos

@@ -1,0 +1,13 @@
+C:\Users\gabriel.porcellis\source\repos\NovoProjetoNHibernate\NovoProjetoNHibernate\bin\Debug\netcoreapp3.1\NovoProjetoNHibernate.exe
+C:\Users\gabriel.porcellis\source\repos\NovoProjetoNHibernate\NovoProjetoNHibernate\bin\Debug\netcoreapp3.1\NovoProjetoNHibernate.deps.json
+C:\Users\gabriel.porcellis\source\repos\NovoProjetoNHibernate\NovoProjetoNHibernate\bin\Debug\netcoreapp3.1\NovoProjetoNHibernate.runtimeconfig.json
+C:\Users\gabriel.porcellis\source\repos\NovoProjetoNHibernate\NovoProjetoNHibernate\bin\Debug\netcoreapp3.1\NovoProjetoNHibernate.runtimeconfig.dev.json
+C:\Users\gabriel.porcellis\source\repos\NovoProjetoNHibernate\NovoProjetoNHibernate\bin\Debug\netcoreapp3.1\NovoProjetoNHibernate.dll
+C:\Users\gabriel.porcellis\source\repos\NovoProjetoNHibernate\NovoProjetoNHibernate\bin\Debug\netcoreapp3.1\NovoProjetoNHibernate.pdb
+C:\Users\gabriel.porcellis\source\repos\NovoProjetoNHibernate\NovoProjetoNHibernate\obj\Debug\netcoreapp3.1\NovoProjetoNHibernate.csprojAssemblyReference.cache
+C:\Users\gabriel.porcellis\source\repos\NovoProjetoNHibernate\NovoProjetoNHibernate\obj\Debug\netcoreapp3.1\NovoProjetoNHibernate.AssemblyInfoInputs.cache
+C:\Users\gabriel.porcellis\source\repos\NovoProjetoNHibernate\NovoProjetoNHibernate\obj\Debug\netcoreapp3.1\NovoProjetoNHibernate.AssemblyInfo.cs
+C:\Users\gabriel.porcellis\source\repos\NovoProjetoNHibernate\NovoProjetoNHibernate\obj\Debug\netcoreapp3.1\NovoProjetoNHibernate.csproj.CoreCompileInputs.cache
+C:\Users\gabriel.porcellis\source\repos\NovoProjetoNHibernate\NovoProjetoNHibernate\obj\Debug\netcoreapp3.1\NovoProjetoNHibernate.dll
+C:\Users\gabriel.porcellis\source\repos\NovoProjetoNHibernate\NovoProjetoNHibernate\obj\Debug\netcoreapp3.1\NovoProjetoNHibernate.pdb
+C:\Users\gabriel.porcellis\source\repos\NovoProjetoNHibernate\NovoProjetoNHibernate\obj\Debug\netcoreapp3.1\NovoProjetoNHibernate.genruntimeconfig.cache

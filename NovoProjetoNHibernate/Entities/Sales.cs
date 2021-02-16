@@ -9,11 +9,11 @@ namespace NovoProjetoNHibernate.Entities
         public virtual DateTime SaleDate { get; set; }
         public virtual Customer Customer { get; set; }
 
-        public Sales(int id, DateTime dateSale)
-        {
-            Id = id;
-            SaleDate = dateSale;
-        }
+        //public Sales(int id, DateTime dateSale)
+        //{
+        //    Id = id;
+        //    SaleDate = dateSale;
+        //}
 
         public override string ToString()
         {

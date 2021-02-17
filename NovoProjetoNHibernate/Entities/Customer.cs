@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Text;
 
 namespace NovoProjetoNHibernate.Entities
@@ -8,27 +9,26 @@ namespace NovoProjetoNHibernate.Entities
         public virtual int Id { get; set; }
         public virtual string FirstName { get; set; }
         public virtual string LastName { get; set; }
-        public virtual DateTime BirthDate { get; set; }
         public virtual string Address { get; set; }
         public virtual string PhoneNumber { get; set; }
         public virtual string CPF { get; set; }
+        public List<Customer> Customers { get; set; } = new List<Customer>();
 
-        public Customer(string firstName, string lastName, DateTime birthDate, string address, string phoneNumber, string cpf)
-        {
-            FirstName = firstName;
-            LastName = lastName;
-            BirthDate = birthDate;
-            Address = address;
-            PhoneNumber = phoneNumber;
-            CPF = cpf;
-        }
+        //public Customer(string firstName, string lastName, DateTime birthDate, string address, string phoneNumber, string cpf)
+        //{
+        //    FirstName = firstName;
+        //    LastName = lastName;
+        //    BirthDate = birthDate;
+        //    Address = address;
+        //    PhoneNumber = phoneNumber;
+        //    CPF = cpf;
+        //}
 
         public override string ToString()
         {
             StringBuilder sb = new StringBuilder();
             sb.AppendLine("Name: " + FirstName);
             sb.AppendLine("Last name: " + LastName);
-            sb.AppendLine("Birth date: " + BirthDate);
             sb.AppendLine("Address: " + Address);
             sb.AppendLine("Phone number: " + PhoneNumber);
             sb.AppendLine("Email: " + CPF);

@@ -7,7 +7,7 @@ namespace NovoProjetoNHibernate.Maps
     {
         public ProductMapper()
         {
-            Table("PRoDuCT");
+            Table("PRODUCT");
             Id(product => product.Id, "ID").GeneratedBy.Identity();
             Map(product => product.Name, "NAME").Length(100).Not.Nullable();
             Map(product => product.Price, "PRICE").Length(100).Not.Nullable();

@@ -140,7 +140,7 @@
           "System.Xml.XDocument": "4.3.0"
         }
       },
-      "NHibernate/5.3.3": {
+      "NHibernate/5.3.5": {
         "type": "package",
         "dependencies": {
           "Antlr3.Runtime": "[3.5.1, 4.0.0)",
@@ -1667,10 +1667,10 @@
         "netstandard.library.nuspec"
       ]
     },
-    "NHibernate/5.3.3": {
-      "sha512": "ar4yr/NgtkysCK46UsEPmraqlAsfDOgpda9tWDRhN0K/N/A2X3rDOFaVg3f+ab3L6oy/+C2hAcUM7sZIBFhq+g==",
+    "NHibernate/5.3.5": {
+      "sha512": "7z6GwmsaViXlVLbKHze4usPpl7syIb8teMb0e6+S8fQGjNICQpnRkJfBePhLz38L9oNJ4wbQb0i11FLr9o0cqQ==",
       "type": "package",
-      "path": "nhibernate/5.3.3",
+      "path": "nhibernate/5.3.5",
       "files": [
         ".nupkg.metadata",
         ".signature.p7s",
@@ -1698,7 +1698,7 @@
         "lib/netstandard2.0/NHibernate.xml",
         "nhibernate-configuration.xsd",
         "nhibernate-mapping.xsd",
-        "nhibernate.5.3.3.nupkg.sha512",
+        "nhibernate.5.3.5.nupkg.sha512",
         "nhibernate.nuspec"
       ]
     },
@@ -5335,6 +5335,7 @@
   "projectFileDependencyGroups": {
     ".NETCoreApp,Version=v3.1": [
       "FluentNHibernate >= 3.1.0",
+      "NHibernate >= 5.3.5",
       "System.Data.SqlClient >= 4.8.2"
     ]
   },
@@ -5384,6 +5385,10 @@
           "FluentNHibernate": {
             "target": "Package",
             "version": "[3.1.0, )"
+          },
+          "NHibernate": {
+            "target": "Package",
+            "version": "[5.3.5, )"
           },
           "System.Data.SqlClient": {
             "target": "Package",

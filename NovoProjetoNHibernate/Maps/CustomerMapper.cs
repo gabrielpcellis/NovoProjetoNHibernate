@@ -8,12 +8,14 @@ namespace NovoProjetoNHibernate.Maps
         public CustomerMapper()
         {
             Table("CUSTOMER");
-            Id(product => product.Id, "ID").GeneratedBy.Identity();
-            Map(product => product.FirstName, "NAME").Length(100).Not.Nullable();
-            Map(product => product.LastName, "LAST NAME").Length(100).Not.Nullable();
-            Map(product => product.Address, "ADDRESS").Length(100).Not.Nullable();
-            Map(product => product.PhoneNumber, "PHONE NUMBER").Length(100).Not.Nullable();
-            Map(product => product.CPF, "CPF").Length(100).Not.Nullable();
+            Id(customer => customer.Id, "ID").GeneratedBy.Identity();
+            Map(customer => customer.FirstName, "NAME").Length(100).Not.Nullable();
+            Map(customer => customer.LastName, "LAST_NAME").Length(100).Not.Nullable();
+            Map(customer => customer.Address, "ADDRESS").Length(100).Not.Nullable();
+            Map(customer => customer.PhoneNumber, "PHONE_NUMBER").Length(100).Not.Nullable();
+            Map(customer => customer.CPF, "CPF").Length(100).Not.Nullable();
+
         }
+
     }
 }

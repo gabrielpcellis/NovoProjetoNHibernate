@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Text;
 
 namespace NovoProjetoNHibernate.Entities
@@ -8,6 +9,7 @@ namespace NovoProjetoNHibernate.Entities
         public virtual int Id { get; set; }
         public virtual DateTime SaleDate { get; set; }
         public virtual Customer Customer { get; set; }
+        public virtual List<Order> Orders { get; set; } = new List<Order>();
 
         //public Sales(int id, DateTime dateSale)
         //{

@@ -7,9 +7,10 @@ namespace NovoProjetoNHibernate.Maps
     {
         public SalesMapper()
         {
-            Table("ID");
-            Id(product => product.Id, "ID").GeneratedBy.Identity();
-            Map(product => product.SaleDate.Date, "SALE DATE").Not.Nullable();
+            Table("SALES");
+            Id(sales => sales.Id, "ID").GeneratedBy.Identity();
+            Map(sales => sales.SaleDate.Date, "SALE_DATE").Not.Nullable();
+            References(sales => sales.Orders).Not.Nullable();
         }
     }
 }

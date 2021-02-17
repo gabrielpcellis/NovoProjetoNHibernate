@@ -17,7 +17,7 @@ namespace NovoProjetoNHibernate
             ISessionFactory sessionFactory = Fluently
                 .Configure()
                 .Database(MsSqlConfiguration.MsSql2012.ConnectionString(
-                    @"Data Source=localhost;Initial Catalog=NHTest; User Id=sa;Password=sa"))
+                    @"Data Source=DEVMYRP-00105\SQLEXPRESS;Initial Catalog=ProjetoNHibernate; User Id=sa;Password=sa"))
                 .Mappings(m => m.FluentMappings.AddFromAssemblyOf<Program>())
                 .ExposeConfiguration(config => new SchemaUpdate(config).Execute(true, true))
                 .BuildSessionFactory();
@@ -36,7 +36,6 @@ namespace NovoProjetoNHibernate
                 Console.WriteLine($"Creating customer:{customer1}");
 
                 session.Save(customer1);
-                session.Flush();
 
                 Console.WriteLine("Saved on database");
                 Console.WriteLine($"Customer: {customer1}");
@@ -53,13 +52,19 @@ namespace NovoProjetoNHibernate
                 Console.WriteLine($"Creating customer:{customer2}");
 
                 session.Save(customer2);
-                session.Flush();
 
                 Console.WriteLine("Saved on database");
                 Console.WriteLine($"Customer: {customer2}");
 
-                customer1.Customers.Add(customer1);
-                customer2.Customers.Add(customer2);
+                Order order = new Order
+                {
+                    Date = DateTime.Now,
+                };
+
+                //order.Customers.Add(customer1);
+                //order.Customers.Add(customer2);
+
+                session.Flush();
             }
 
             using (ISession session = sessionFactory.OpenSession())
@@ -72,7 +77,6 @@ namespace NovoProjetoNHibernate
                 };
 
                 session.Save(product);
-                session.Flush();
 
                 Console.WriteLine("Saved on database");
                 Console.WriteLine($"Product: {product}");
@@ -85,7 +89,6 @@ namespace NovoProjetoNHibernate
                 };
 
                 session.Save(product);
-                session.Flush();
 
                 Console.WriteLine("Saved on database");
                 Console.WriteLine($"Product: {product}");
@@ -97,12 +100,14 @@ namespace NovoProjetoNHibernate
 
                 order.Products.Add(product);
                 order.Products.Add(AnotherProduct);
+
+                session.Flush();
+
+                session.Save(order);
+               Console. WriteLine("Saved on database");
+                Console.WriteLine($"Order: {order}");
             }
 
-            using (ISession session = sessionFactory.OpenSession())
-            {
-              
-            }
         }
     }
 }

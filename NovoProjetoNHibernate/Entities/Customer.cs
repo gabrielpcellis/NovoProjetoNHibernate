@@ -12,7 +12,8 @@ namespace NovoProjetoNHibernate.Entities
         public virtual string Address { get; set; }
         public virtual string PhoneNumber { get; set; }
         public virtual string CPF { get; set; }
-        public List<Customer> Customers { get; set; } = new List<Customer>();
+        //public virtual List<Customer> Customers { get; set; } = new List<Customer>();
+
 
         //public Customer(string firstName, string lastName, DateTime birthDate, string address, string phoneNumber, string cpf)
         //{
@@ -27,6 +28,7 @@ namespace NovoProjetoNHibernate.Entities
         public override string ToString()
         {
             StringBuilder sb = new StringBuilder();
+
             sb.AppendLine("Name: " + FirstName);
             sb.AppendLine("Last name: " + LastName);
             sb.AppendLine("Address: " + Address);

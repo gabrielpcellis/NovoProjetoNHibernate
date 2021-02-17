@@ -1,6 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
+﻿using System.Text;
 
 namespace NovoProjetoNHibernate.Entities
 {
@@ -12,8 +10,7 @@ namespace NovoProjetoNHibernate.Entities
         public virtual string Address { get; set; }
         public virtual string PhoneNumber { get; set; }
         public virtual string CPF { get; set; }
-        //public virtual List<Customer> Customers { get; set; } = new List<Customer>();
-
+        //public List<Order> Orders { get; set; } = new List<Order>();
 
         //public Customer(string firstName, string lastName, DateTime birthDate, string address, string phoneNumber, string cpf)
         //{

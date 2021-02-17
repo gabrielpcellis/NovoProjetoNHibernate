@@ -10,12 +10,12 @@ namespace NovoProjetoNHibernate.Maps
     {
         public OrderMapper()
         {
-            Table("Order");
+            Table("ORDER");
             Id(order => order.Id, "ID").GeneratedBy.Identity();
             Map(order => order.Date).Not.Nullable();
-            Map(order => order.Customer).Not.Nullable();
-            References(order => order.Products).Not.Nullable();
-            HasManyToMany(order => order.Sales);
+            References(order => order.Customer).Not.Nullable().ForeignKey("FK_CUSTOMER");
+            References(order => order.Product).Not.Nullable();
+            HasManyToMany(order => order.Sales).Cascade.None();
         }
     }
 }

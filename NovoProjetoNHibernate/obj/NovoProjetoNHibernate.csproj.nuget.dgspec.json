@@ -46,10 +46,6 @@
             "FluentNHibernate": {
               "target": "Package",
               "version": "[3.1.0, )"
-            },
-            "System.Data.SqlClient": {
-              "target": "Package",
-              "version": "[4.8.2, )"
             }
           },
           "imports": [

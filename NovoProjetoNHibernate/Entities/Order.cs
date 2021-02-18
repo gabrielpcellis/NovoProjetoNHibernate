@@ -8,8 +8,8 @@ namespace NovoProjetoNHibernate.Entities
     {
         public virtual int Id { get; set; }
         public virtual DateTime Date { get; set; }
-        public virtual Product Product { get; set; }/* = new List<Product>();*/
-        public virtual List<Sales> Sales { get; set; }/* = new List<Sales>();*/
+        public virtual Product Product { get; set; }
+        public virtual List<Sales> Sales { get; set; }
         public virtual Customer Customer { get; set; }
 
         //public override string ToString()

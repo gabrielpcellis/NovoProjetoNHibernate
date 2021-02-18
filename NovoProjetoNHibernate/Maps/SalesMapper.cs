@@ -10,7 +10,7 @@ namespace NovoProjetoNHibernate.Maps
             Table("SALES");
             Id(sales => sales.Id, "ID").GeneratedBy.Identity();
             Map(sales => sales.SaleDate, "SALE_DATE").Not.Nullable();
-            HasManyToMany(sales => sales.Orders).Cascade.None();
+            References(sales => sales.Orders).Cascade.None();
         }
     }
 }

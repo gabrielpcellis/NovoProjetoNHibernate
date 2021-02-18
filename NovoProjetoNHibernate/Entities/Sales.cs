@@ -9,7 +9,8 @@ namespace NovoProjetoNHibernate.Entities
         public virtual int Id { get; set; }
         public virtual DateTime SaleDate { get; set; }
         public virtual Customer Customer { get; set; }
-        public virtual List<Order> Orders { get; set; } = new List<Order>();
+        public virtual Order Orders { get; set; }
+        public virtual List<Product> Products { get; set; }
 
         //public Sales(int id, DateTime dateSale)
         //{

@@ -6,17 +6,10 @@ namespace NovoProjetoNHibernate.Entities
 {
     class Sales
     {
-        public virtual int Id { get; set; }
+        public virtual long Id { get; set; }
         public virtual DateTime SaleDate { get; set; }
         public virtual Customer Customer { get; set; }
         public virtual Order Orders { get; set; }
-        public virtual List<Product> Products { get; set; }
-
-        //public Sales(int id, DateTime dateSale)
-        //{
-        //    Id = id;
-        //    SaleDate = dateSale;
-        //}
 
         public override string ToString()
         {

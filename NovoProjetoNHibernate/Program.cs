@@ -1,12 +1,11 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Globalization;
-using System.Linq;
-using FluentNHibernate.Cfg;
+﻿using FluentNHibernate.Cfg;
 using FluentNHibernate.Cfg.Db;
 using NHibernate;
 using NHibernate.Tool.hbm2ddl;
 using NovoProjetoNHibernate.Entities;
+using System;
+using System.Collections.Generic;
+using System.Linq;
 
 namespace NovoProjetoNHibernate
 {
@@ -24,16 +23,17 @@ namespace NovoProjetoNHibernate
                 .ExposeConfiguration(config => new SchemaUpdate(config).Execute(true, true))
                 .BuildSessionFactory();
 
-            var listProduct = Auxiliar.CreateProducts();
+            //Rodar somente 1 vez
 
-            Auxiliar.SavingProducts(sessionFactory, listProduct);
+            //var listProduct = Auxiliar.CreateProducts();
+            //Auxiliar.SavingProducts(sessionFactory, listProduct);
 
             using (ISession session = sessionFactory.OpenSession())
             {
-                var vendas = session.Query<Sales>().Where(x => x.Products.Any());
-                foreach (var venda in vendas)
+                var sales = session.Query<Sales>().Where(x => x.Orders.Products.Any());
+                foreach (var sale in sales)
                 {
-                    Console.WriteLine(venda.ToString());
+                    Console.WriteLine(sale);
                 }
             }
 
@@ -62,7 +62,6 @@ namespace NovoProjetoNHibernate
                     foreach (var item in productList)
                     {
                         session.Save(item);
-
                     }
 
                     session.Flush();
@@ -77,16 +76,16 @@ namespace NovoProjetoNHibernate
                     session.Save(customer1);
                     session.Save(customer2);
 
-                    Order order1 = new Order { Date = DateTime.Now, Customer = customer1, Product = productList[0]};
-                    Order order2 = new Order { Date = DateTime.Now, Customer = customer2 , Product = productList[1]};
+                    Order order1 = new Order { Date = DateTime.Now, Customer = customer1, Products = productList };
+                    Order order2 = new Order { Date = DateTime.Now, Customer = customer2, Products = productList };
 
                     session.Save(order1);
                     session.Save(order2);
 
-                    Sales sale1 = new Sales { Orders = order1, Products = productList };
-                    Sales sale2 = new Sales { Orders = order1, Products = productList };
-                    Sales sale3 = new Sales { Orders = order1, Products = productList };
-                    Sales sale4 = new Sales { Orders = order1, Products = productList };
+                    Sales sale1 = new Sales { Orders = order1};
+                    Sales sale2 = new Sales { Orders = order1};
+                    Sales sale3 = new Sales { Orders = order1};
+                    Sales sale4 = new Sales { Orders = order1};
 
                     session.Save(sale1);
                     session.Save(sale2);

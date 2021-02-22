@@ -1,4 +1,5 @@
-﻿using FluentNHibernate.Mapping;
+﻿using FluentNHibernate;
+using FluentNHibernate.Mapping;
 using NovoProjetoNHibernate.Entities;
 
 namespace NovoProjetoNHibernate.Maps
@@ -7,19 +8,23 @@ namespace NovoProjetoNHibernate.Maps
     {
         public OrderMapper()
         {
-            Table("ORDER");
+            Table("ORDER_PRODUCT");
             Id(order => order.Id, "ID")
                 .GeneratedBy.Identity();
             Map(order => order.Date)
                 .Not.Nullable();
-            References(order => order.Customer)
-                .Not.Nullable()
-                .ForeignKey()
-                .Columns("FK_CUSTOMER");
-            HasMany(order => order.Products)
-                .Table("PRODUCT")
-                .KeyColumn("FK_PRODUCT")
-                .ForeignKeyConstraintName("FK_PRODUCT_ORDERS");
+            HasMany<Product>(Reveal.Member<Order>("Products"))
+                .LazyLoad()
+                .KeyColumn("PRODUCT_FK")
+                .Cascade.AllDeleteOrphan()
+                .Inverse()
+                .ForeignKeyConstraintName("PROD_FK");
+
+            //HasMany(order => order.Products)
+            //    .Table("PRODUCT")
+            //    .ForeignKeyConstraintName("FK_PRODUCT_ORDERS")
+            //    .KeyColumn("FK_PRODUCT")
+            //    .Inverse();
         }
     }
 }

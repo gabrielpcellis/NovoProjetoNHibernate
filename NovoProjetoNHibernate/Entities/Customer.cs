@@ -11,18 +11,7 @@ namespace NovoProjetoNHibernate.Entities
         public virtual string Address { get; set; }
         public virtual DateTime BirthDate{ get; set; }
         public virtual string CPF { get; set; }
-        //public List<Order> Orders { get; set; } = new List<Order>();
-
-        //public Customer(string firstName, string lastName, DateTime birthDate, string address, string phoneNumber, string cpf)
-        //{
-        //    FirstName = firstName;
-        //    LastName = lastName;
-        //    BirthDate = birthDate;
-        //    Address = address;
-        //    PhoneNumber = phoneNumber;
-        //    CPF = cpf;
-        //}
-
+     
         public override string ToString()
         {
             StringBuilder sb = new StringBuilder();

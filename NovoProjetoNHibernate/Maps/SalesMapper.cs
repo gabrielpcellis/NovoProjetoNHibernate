@@ -12,8 +12,11 @@ namespace NovoProjetoNHibernate.Maps
                 .GeneratedBy.Identity();
             Map(sales => sales.SaleDate, "SALE_DATE")
                 .Not.Nullable();
-            References(sales => sales.Orders)
-                .Cascade.None();
+            References(sales => sales.Customer)
+                .Not.Nullable()
+                .ForeignKey()
+                .Columns("FK_CUSTOMER");
+            References(sales => sales.Orders);
         }
     }
 }

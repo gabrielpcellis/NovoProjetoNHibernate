@@ -9,14 +9,6 @@ namespace NovoProjetoNHibernate.Entities
         public virtual string Name { get; set; }
         public virtual double Price { get; set; }
         public virtual int Quantity { get; set; }
-        public virtual List<Order> Orders { get; set; }
-
-        //public Product(string name, double price, int quantity)
-        //{
-        //    Name = name;
-        //    Price = price;
-        //    Quantity = quantity;
-        //}
 
         public override string ToString()
         {

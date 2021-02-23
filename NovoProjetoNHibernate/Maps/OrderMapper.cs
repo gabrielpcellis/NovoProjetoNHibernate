@@ -4,7 +4,7 @@ using NovoProjetoNHibernate.Entities;
 
 namespace NovoProjetoNHibernate.Maps
 {
-    class OrderMapper : ClassMap<Order>
+    public class OrderMapper : ClassMap<Order>
     {
         public OrderMapper()
         {

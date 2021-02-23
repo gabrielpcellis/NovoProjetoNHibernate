@@ -4,7 +4,7 @@ using System.Text;
 
 namespace NovoProjetoNHibernate.Entities
 {
-    class Sales
+    public class Sales
     {
         public virtual long Id { get; set; }
         public virtual DateTime SaleDate { get; set; }

@@ -3,7 +3,7 @@ using NovoProjetoNHibernate.Entities;
 
 namespace NovoProjetoNHibernate.Maps
 {
-    class CustomerMapper : ClassMap<Customer>
+    public class CustomerMapper : ClassMap<Customer>
     {
         public CustomerMapper()
         {

@@ -3,7 +3,7 @@ using System.Collections.Generic;
 
 namespace NovoProjetoNHibernate.Entities
 {
-    class Order
+    public class Order
     {
         public virtual long Id { get; set; }
         public virtual DateTime Date { get; set; }

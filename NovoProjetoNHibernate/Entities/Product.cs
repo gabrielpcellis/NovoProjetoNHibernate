@@ -3,12 +3,24 @@ using System.Text;
 
 namespace NovoProjetoNHibernate.Entities
 {
-    class Product
+    public class Product
     {
         public virtual long Id { get; set; }
         public virtual string Name { get; set; }
         public virtual double Price { get; set; }
         public virtual int Quantity { get; set; }
+
+        public Product()
+        {
+
+        }
+
+        public Product(string name, double price, int quantity)
+        {
+            Name = name;
+            Price = price;
+            Quantity = quantity;
+        }
 
         public override string ToString()
         {

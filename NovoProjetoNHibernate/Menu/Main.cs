@@ -1,7 +1,8 @@
 ﻿using NHibernate;
 using NovoProjetoNHibernate.Entities;
 using System;
-using System.Globalization;
+using System.Collections.Generic;
+using System.Linq;
 
 namespace NovoProjetoNHibernate.Menu
 {
@@ -16,90 +17,111 @@ namespace NovoProjetoNHibernate.Menu
 
         public void Menu()
         {
-            bool sair = true;
+            bool exit = true;
             do
             {
-                Console.Clear();
-                Console.WriteLine("O que deseja fazer? \n"
+                Console.WriteLine("Escolha uma das opções abaixo: \n"
                         + "1) Cadastrar novo cliente; \n"
                         + "2) Cadastrar novo produto; \n"
                         + "3) Visualizar produtos; \n"
-                        + "4) Visualizar cliente; \n"
-                        + "5) Sair.");
+                        + "4) Pesquisar produto; \n"
+                        + "5) Visualizar clientes; \n"
+                        + "6) Pesquisar cliente; \n"
+                        + "7) Sair.");
 
-                string opt = Console.ReadLine();
-                switch (opt)
+                try
                 {
-                    case "1":
-                        CreateCustomer();
-                        break;
-                    case "2":
-                        CreateProduct();
-                        break;
-                    case "3":
-
-                        break;
-                    case "4":
-
-                        break;
-                    case "5":
-                        sair = false;
-                        break;
-                    default:
-                        break;
+                    string opt = Console.ReadLine();
+                    switch (opt)
+                    {
+                        case "1":
+                            Session.Save(Customer.CreateNewCustomer());
+                            Console.Clear();
+                            Console.WriteLine("Cliente cadastrado com sucesso!");
+                            Console.WriteLine("Precione qualquer tecla para continuar!");
+                            Console.ReadKey();
+                            Console.Clear();
+                            break;
+                        case "2":
+                            Session.Save(Product.CreateNewProduct());
+                            Console.Clear();
+                            Console.WriteLine("Produto cadastrado com sucesso!");
+                            Console.WriteLine("Precione qualquer tecla para continuar!");
+                            Console.ReadKey();
+                            Console.Clear();
+                            break;
+                        case "3":
+                            VisualizeAllTheProducts();
+                            break;
+                        case "4":
+                            SearchProduct();
+                            break;
+                        case "5":
+                            VisualizeAllTheCustomers();
+                            break;
+                        case "6":
+                            SearchCustomer();
+                            break;
+                        case "7":
+                            exit = false;
+                            break;
+                        default:
+                            break;
+                    }
                 }
-            } while (sair);
-        }
+                catch (Exception e)
+                {
+                    Console.WriteLine($"Erro encontrado: {e.Message}");
+                }
 
-        private void CreateCustomer()
-        {
-            Console.Clear();
-            Console.WriteLine("Informe os dados do cliente: \n");
-            Console.Write("Nome: ");
-            string name = Console.ReadLine();
-            Console.Write("Sobrenome: ");
-            string lastName = Console.ReadLine();
-            Console.Write("Endereço: ");
-            string address = Console.ReadLine();
-            Console.Write("Data de nascimento: ");
-            DateTime birthDate = DateTime.Parse(Console.ReadLine());
+                IList<Product> VisualizeAllTheProducts()
+                {
+                    IList<Product> products = Session.Query<Product>().OrderBy(p => p.Name).ToList();
+                    foreach (Product product in products)
+                    {
+                        Console.WriteLine(product);
+                    }
+                    return products;
+                }
 
-            string cpf = string.Empty;
-            while (cpf.Length < 1)
-            {
-                Console.Write("CPF: ");
-                cpf = Console.ReadLine();
+                void SearchProduct()
+                {
+                    Console.Write("Informe o Id do produto que deseja encontrar: ");
+                    int productId = int.Parse(Console.ReadLine());
 
-                if (string.IsNullOrEmpty(cpf))
-                    Console.WriteLine("CPF inválido");
-            }
+                    Product prod = (from p in Session.Query<Product>()
+                                    where p.Id == productId
+                                    select p).SingleOrDefault();
 
-            var customer = new Customer(name, lastName, address, birthDate, cpf);
-            try
-            {
-                Session.Save(customer);
-                Console.WriteLine("Usuário cadastrado com sucesso!");
-            }
-            catch (Exception ex)
-            {
-                Console.WriteLine($"Erro ao salvar cliente: {ex.Message}");
-            }
-            Console.ReadLine();
-        }
+                    Console.WriteLine(prod.ToString());
+                }
 
-        private void CreateProduct()
-        {
-            Console.Clear();
-            Console.WriteLine("Informe os dados do produto: \n");
-            Console.Write("Nome: ");
-            string name = Console.ReadLine();
-            Console.Write("Preço: ");
-            double price = double.Parse(Console.ReadLine(), CultureInfo.InvariantCulture);
-            Console.Write("Quantidade: ");
-            int quantity = int.Parse(Console.ReadLine());
+                IList<Customer> VisualizeAllTheCustomers()
+                {
+                    IList<Customer> customers = Session.Query<Customer>().OrderBy(customer => customer.FirstName).ToList();
+                    foreach (Customer customer in customers)
+                    {
+                        Console.WriteLine(customer);
+                    }
 
-            var product = new Product(name, price, quantity);
-            Session.Save(product);
+                    Session.Save(customers);
+
+                    return customers;
+                }
+
+                void SearchCustomer()
+                {
+                    Console.Write("Informe o CPF do cliente que deseja encontrar: ");
+                    string customerCpf = Console.ReadLine();
+
+                    Customer customer = (from c in Session.Query<Customer>()
+                                         where c.CPF == customerCpf
+                                         select c).SingleOrDefault();
+
+                    Console.WriteLine(customer.ToString());
+                }
+
+            } while (exit);
         }
     }
 }

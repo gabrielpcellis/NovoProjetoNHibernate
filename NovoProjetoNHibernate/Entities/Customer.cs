@@ -26,14 +26,41 @@ namespace NovoProjetoNHibernate.Entities
             CPF = cpf;
         }
 
+        public static Customer CreateNewCustomer()
+        {
+            Console.Clear();
+            Console.WriteLine("Informe os dados do cliente: \n");
+            Console.Write("Nome: ");
+            string name = Console.ReadLine();
+            Console.Write("Sobrenome: ");
+            string lastName = Console.ReadLine();
+            Console.Write("Endereço: ");
+            string address = Console.ReadLine();
+            Console.Write("Data de nascimento: ");
+            DateTime birthDate = DateTime.Parse(Console.ReadLine());
+
+            string cpf = string.Empty;
+            while (cpf.Length != 11)
+            {
+                Console.Write("CPF: ");
+                cpf = Console.ReadLine();
+
+                if (string.IsNullOrEmpty(cpf) || cpf.Length != 11)
+                {
+                    Console.WriteLine("CPF inválido");
+                }
+            }
+            return new Customer(name, lastName, address, birthDate, cpf);
+        }
+
         public override string ToString()
         {
             StringBuilder sb = new StringBuilder();
 
-            sb.AppendLine("Name: " + FirstName);
-            sb.AppendLine("Last name: " + LastName);
-            sb.AppendLine("Address: " + Address);
-            sb.AppendLine("Birth Date: " + BirthDate.ToString("dd/MM/yyyy"));
+            sb.AppendLine("Nome: " + FirstName);
+            sb.AppendLine("Sobrenome: " + LastName);
+            sb.AppendLine("Endereço: " + Address);
+            sb.AppendLine("Data de nascimento: " + BirthDate.ToString("dd/MM/yyyy"));
             sb.AppendLine("CPF: " + CPF);
 
             return sb.ToString();

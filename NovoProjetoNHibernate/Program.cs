@@ -9,7 +9,7 @@ namespace NovoProjetoNHibernate
         static void Main(string[] args)
         {
             ISession session = Session.CreateSession().OpenSession();
-            var main = new Main(session);
+            Main main = new Main(session);
             main.Menu();
         }
     }

@@ -34,6 +34,11 @@ namespace NovoProjetoNHibernate.Entities
             Console.Write("Quantidade: ");
             int quantity = int.Parse(Console.ReadLine());
 
+            Console.Clear();
+            Console.WriteLine("Produto cadastrado com sucesso!");
+            Console.WriteLine("Precione qualquer tecla para continuar!");
+            Console.ReadKey();
+            Console.Clear();
             return new Product(name, price, quantity);
         }
 

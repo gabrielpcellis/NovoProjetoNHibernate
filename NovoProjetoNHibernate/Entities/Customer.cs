@@ -50,6 +50,11 @@ namespace NovoProjetoNHibernate.Entities
                     Console.WriteLine("CPF inválido");
                 }
             }
+            Console.Clear();
+            Console.WriteLine("Cliente cadastrado com sucesso!");
+            Console.WriteLine("Precione qualquer tecla para continuar!");
+            Console.ReadKey();
+            Console.Clear();
             return new Customer(name, lastName, address, birthDate, cpf);
         }
 

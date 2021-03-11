@@ -27,8 +27,8 @@ namespace NovoProjetoNHibernate.Menu
                         + "4) Pesquisar produto; \n"
                         + "5) Visualizar clientes; \n"
                         + "6) Pesquisar cliente; \n"
-                        + "7) Sair.");
-
+                        + "7) Excluir cliente; \n"
+                        + "8) Sair.");
                 try
                 {
                     string opt = Console.ReadLine();
@@ -36,19 +36,9 @@ namespace NovoProjetoNHibernate.Menu
                     {
                         case "1":
                             Session.Save(Customer.CreateNewCustomer());
-                            Console.Clear();
-                            Console.WriteLine("Cliente cadastrado com sucesso!");
-                            Console.WriteLine("Precione qualquer tecla para continuar!");
-                            Console.ReadKey();
-                            Console.Clear();
                             break;
                         case "2":
                             Session.Save(Product.CreateNewProduct());
-                            Console.Clear();
-                            Console.WriteLine("Produto cadastrado com sucesso!");
-                            Console.WriteLine("Precione qualquer tecla para continuar!");
-                            Console.ReadKey();
-                            Console.Clear();
                             break;
                         case "3":
                             VisualizeAllTheProducts();
@@ -63,6 +53,9 @@ namespace NovoProjetoNHibernate.Menu
                             SearchCustomer();
                             break;
                         case "7":
+                            DeleteCustomer();
+                            break;
+                        case "8":
                             exit = false;
                             break;
                         default:
@@ -73,55 +66,73 @@ namespace NovoProjetoNHibernate.Menu
                 {
                     Console.WriteLine($"Erro encontrado: {e.Message}");
                 }
-
-                IList<Product> VisualizeAllTheProducts()
-                {
-                    IList<Product> products = Session.Query<Product>().OrderBy(p => p.Name).ToList();
-                    foreach (Product product in products)
-                    {
-                        Console.WriteLine(product);
-                    }
-                    return products;
-                }
-
-                void SearchProduct()
-                {
-                    Console.Write("Informe o Id do produto que deseja encontrar: ");
-                    int productId = int.Parse(Console.ReadLine());
-
-                    Product prod = (from p in Session.Query<Product>()
-                                    where p.Id == productId
-                                    select p).SingleOrDefault();
-
-                    Console.WriteLine(prod.ToString());
-                }
-
-                IList<Customer> VisualizeAllTheCustomers()
-                {
-                    IList<Customer> customers = Session.Query<Customer>().OrderBy(customer => customer.FirstName).ToList();
-                    foreach (Customer customer in customers)
-                    {
-                        Console.WriteLine(customer);
-                    }
-
-                    Session.Save(customers);
-
-                    return customers;
-                }
-
-                void SearchCustomer()
-                {
-                    Console.Write("Informe o CPF do cliente que deseja encontrar: ");
-                    string customerCpf = Console.ReadLine();
-
-                    Customer customer = (from c in Session.Query<Customer>()
-                                         where c.CPF == customerCpf
-                                         select c).SingleOrDefault();
-
-                    Console.WriteLine(customer.ToString());
-                }
-
             } while (exit);
+
+            IList<Product> VisualizeAllTheProducts()
+            {
+                IList<Product> products = Session.Query<Product>().OrderBy(p => p.Name).ToList();
+                foreach (Product product in products)
+                {
+                    Console.WriteLine(product);
+                }
+                return products;
+            }
+
+            void SearchProduct()
+            {
+                Console.Write("Informe o Id do produto que deseja encontrar: ");
+                int productId = int.Parse(Console.ReadLine());
+
+                Product prod = (from p in Session.Query<Product>()
+                                where p.Id == productId
+                                select p).SingleOrDefault();
+
+                Console.WriteLine(prod.ToString());
+            }
+
+            IList<Customer> VisualizeAllTheCustomers()
+            {
+                IList<Customer> customers = Session.Query<Customer>().OrderBy(customer => customer.FirstName).ToList();
+                foreach (Customer customer in customers)
+                {
+                    Console.WriteLine(customer);
+                }
+                Session.Save(customers);
+
+                return customers;
+            }
+
+            void SearchCustomer()
+            {
+                Console.Write("Informe o CPF do cliente que deseja encontrar: ");
+                string customerCpf = Console.ReadLine();
+
+                Customer customer = (from c in Session.Query<Customer>()
+                                     where c.CPF == customerCpf
+                                     select c).SingleOrDefault();
+
+                Console.WriteLine(customer.ToString());
+            }
+
+            void DeleteCustomer()
+            {
+                Console.Write("ID do cliente para exclusão: ");
+                long id = long.Parse(Console.ReadLine());
+                var customer = Session.Get<Customer>(id);
+                Console.WriteLine($"Cliente excluído: {customer.Id}, {customer.FirstName}, {customer.LastName}");
+                using (var transaction = Session.BeginTransaction())
+                {
+                    try
+                    {
+                        Session.Delete(customer);
+                        transaction.Commit();
+                    }
+                    catch (Exception)
+                    {
+                        transaction.Rollback();
+                    }
+                }
+            }
         }
     }
 }
